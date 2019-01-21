@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="目的从小程序基础库版本1.6.3开始，小程序支持了简洁的组件化编程。通过编写一个自定义组件来学习小程序自定义组件的用法，这里我准备写一个如下的搜索框组件。  流程1.新建组件相关文件在项目根目录下新建如下文件123456/component/    searchbar/        index.wxml        index.js        index.wxss        index">
+<meta name="keywords" content="blog frontend">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序自定义组件实践">
+<meta property="og:url" content="https://elilai666.github.io/2019/01/20/微信小程序自定义组件实践/index.html">
+<meta property="og:site_name" content="Eli&#39;s Blog">
+<meta property="og:description" content="目的从小程序基础库版本1.6.3开始，小程序支持了简洁的组件化编程。通过编写一个自定义组件来学习小程序自定义组件的用法，这里我准备写一个如下的搜索框组件。  流程1.新建组件相关文件在项目根目录下新建如下文件123456/component/    searchbar/        index.wxml        index.js        index.wxss        index">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/704059-ee0ead271fb422d8.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/704059-df592828ef2241fa.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2019-01-21T01:38:01.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序自定义组件实践">
+<meta name="twitter:description" content="目的从小程序基础库版本1.6.3开始，小程序支持了简洁的组件化编程。通过编写一个自定义组件来学习小程序自定义组件的用法，这里我准备写一个如下的搜索框组件。  流程1.新建组件相关文件在项目根目录下新建如下文件123456/component/    searchbar/        index.wxml        index.js        index.wxss        index">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/704059-ee0ead271fb422d8.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'XSA67E08OU',
+      apiKey: '02d8537595290963fd6a24d8db169128',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://elilai666.github.io/2019/01/20/微信小程序自定义组件实践/">
+
+
+
+
+
+  <title>微信小程序自定义组件实践 | Eli's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Eli's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hello World</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://elilai666.github.io/2019/01/20/微信小程序自定义组件实践/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eli Lai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eli's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微信小程序自定义组件实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-20T18:58:47+08:00">
+                2019-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>从小程序基础库版本1.6.3开始，小程序支持了简洁的组件化编程。通过编写一个自定义组件来学习小程序自定义组件的用法，这里我准备写一个如下的搜索框组件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/704059-ee0ead271fb422d8.gif?imageMogr2/auto-orient/strip" alt="搜索框组件"></p>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><h3 id="1-新建组件相关文件"><a href="#1-新建组件相关文件" class="headerlink" title="1.新建组件相关文件"></a>1.新建组件相关文件</h3><p>在项目根目录下新建如下文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/component/</span><br><span class="line">    searchbar/</span><br><span class="line">        index.wxml</span><br><span class="line">        index.js</span><br><span class="line">        index.wxss</span><br><span class="line">        index.json</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-编写组件相关文件"><a href="#2-编写组件相关文件" class="headerlink" title="2.编写组件相关文件"></a>2.编写组件相关文件</h3><h4 id="index-wxml"><a href="#index-wxml" class="headerlink" title="index.wxml"></a>index.wxml</h4><p><code>index.wxml</code> 中编写搜索框组件的结构（偷懒直接用了<a href="https://github.com/Tencent/weui-wxss" target="_blank" rel="noopener">WeUI</a>的搜索框组件改了下）<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--index.wxml--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"my-search-bar"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"my-search-bar__form"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"my-search-bar__box"</span> <span class="attr">bindtap</span>=<span class="string">"showInput"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">icon</span> <span class="attr">class</span>=<span class="string">"my-icon-search_in-box"</span> <span class="attr">type</span>=<span class="string">"search"</span> <span class="attr">size</span>=<span class="string">"14"</span> <span class="attr">color</span>=<span class="string">'&#123;&#123;searchIconColor&#125;&#125;'</span>&gt;</span><span class="tag">&lt;/<span class="name">icon</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"my-search-bar__input"</span> <span class="attr">placeholder</span>=<span class="string">"&#123;&#123;placeholder&#125;&#125;"</span> <span class="attr">confirm-type</span>=<span class="string">"search"</span> <span class="attr">value</span>=<span class="string">"&#123;&#123;searchValue&#125;&#125;"</span> <span class="attr">focus</span>=<span class="string">"&#123;&#123;inputFocused&#125;&#125;"</span> <span class="attr">bindinput</span>=<span class="string">"inputTyping"</span> <span class="attr">bindconfirm</span>=<span class="string">"getSearchValue"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"my-icon-clear"</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;searchValue.length &gt; 0&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"clearInput"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">icon</span> <span class="attr">type</span>=<span class="string">"clear"</span> <span class="attr">size</span>=<span class="string">"14"</span> <span class="attr">color</span>=<span class="string">'&#123;&#123;clearIconColor&#125;&#125;'</span>&gt;</span><span class="tag">&lt;/<span class="name">icon</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"my-search-bar__label"</span> <span class="attr">hidden</span>=<span class="string">"&#123;&#123;inputFocused&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"showInput"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">icon</span> <span class="attr">class</span>=<span class="string">"my-icon-search"</span> <span class="attr">type</span>=<span class="string">"search"</span> <span class="attr">size</span>=<span class="string">"14"</span>&gt;</span><span class="tag">&lt;/<span class="name">icon</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"my-search-bar__text"</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"my-search-bar__cancel-btn"</span> <span class="attr">hidden</span>=<span class="string">"&#123;&#123;!inputFocused&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"hideInput"</span>&gt;</span></span><br><span class="line">        取消</span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h4><p><code>index.js</code>中编写组件中绑定的几个事件，初始化组件的属性和数据，其中用到了<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/component.html" target="_blank" rel="noopener">Compnent构造器</a>，相关属性见官方文档。</p>
+<ul>
+<li>这里注意下<code>getSearchValue</code>这个方法里用到了<code>this.triggerEvent</code>的方法触发一个自定义的事件<code>search</code>，并把搜索框内容通过event传输出去，具体用法参考<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/events.html" target="_blank" rel="noopener">组件事件</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js </span></span><br><span class="line">Component(&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 组件的属性列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    properties: &#123;</span><br><span class="line">        title: &#123;</span><br><span class="line">            type: <span class="built_in">String</span>,</span><br><span class="line">            value: <span class="string">"标题"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        placeholder: &#123;</span><br><span class="line">            type: <span class="built_in">String</span>,</span><br><span class="line">            value: <span class="string">"搜索"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        searchIconColor: &#123;</span><br><span class="line">            type: <span class="built_in">String</span>,</span><br><span class="line">            value: <span class="string">""</span></span><br><span class="line">        &#125;,</span><br><span class="line">        clearIconColor: &#123;</span><br><span class="line">            type: <span class="built_in">String</span>,</span><br><span class="line">            value: <span class="string">""</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 组件的初始数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    data: &#123;</span><br><span class="line">        inputFocused: <span class="literal">false</span>,</span><br><span class="line">        searchValue: <span class="string">""</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 组件的方法列表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    methods: &#123;</span><br><span class="line">        showInput() &#123;</span><br><span class="line">            <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">                inputFocused: <span class="literal">true</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        hideInput() &#123;</span><br><span class="line">            <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">                inputFocused: <span class="literal">false</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        clearInput() &#123;</span><br><span class="line">            <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">                searchValue: <span class="string">""</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        inputTyping(e) &#123;</span><br><span class="line">            <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">                searchValue: e.detail.value</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        getSearchValue(e) &#123;</span><br><span class="line">            <span class="keyword">const</span> eventDetails = &#123;</span><br><span class="line">                value: <span class="keyword">this</span>.data.searchValue</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">this</span>.triggerEvent(<span class="string">"search"</span>, eventDetails)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="index-wxss"><a href="#index-wxss" class="headerlink" title="index.wxss"></a>index.wxss</h4><p><code>index.wxss</code> 编写组件样式，需要注意以下几点：</p>
+<ul>
+<li>组件和引用组件的页面<strong>不能使用id选择器（#a）、属性选择器（[a]）</strong>和标签名选择器，请改用class选择器。</li>
+<li>组件和引用组件的页面中使用后代选择器（.a .b）在一些极端情况下会有非预期的表现，如遇，请避免使用。</li>
+<li>子元素选择器（.a&gt;.b）只能用于 view 组件与其子节点之间，用于其他组件可能导致非预期的情况。</li>
+<li>继承样式，如 font 、 color ，会从组件外继承到组件内。</li>
+<li>除继承样式外， app.wxss 中的样式、组件所在页面的的样式对自定义组件无效。<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*index.wxss*/</span></span><br><span class="line"><span class="selector-class">.my-search-bar</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">8px</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-flex;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#efeff4</span>;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">1</span>rpx solid <span class="number">#d7d6dc</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1</span>rpx solid <span class="number">#d7d6dc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-icon-search</span> &#123;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: inherit;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-icon-search_in-box</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">7px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-search-bar__text</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-search-bar__form</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">-webkit-box-flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">-webkit-flex</span>: auto;</span><br><span class="line">    <span class="attribute">flex</span>: auto;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1</span>rpx solid <span class="number">#e6e6ea</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-search-bar__box</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">padding-right</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-search-bar__input</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">28px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">28px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-icon-clear</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">7px</span> <span class="number">8px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-search-bar__label</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">2</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#9b9b9b</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">28px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.my-search-bar__cancel-btn</span> &#123;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">28px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#09bb07</span>;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><code>index.json</code><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"component"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"usingComponents"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-使用组件"><a href="#3-使用组件" class="headerlink" title="3.使用组件"></a>3.使用组件</h3><p>先在需要使用组件的页面的json文件中注册组件<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"usingComponents"</span>: &#123;</span><br><span class="line">        <span class="attr">"my-searchbar"</span>: <span class="string">"/component/searchbar/index"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在页面wxml文件中使用组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;my-searchbar title=&quot;标题&quot; placeholder=&quot;输入搜索内容&quot; bind:search=&quot;onSearch&quot; &gt;&lt;/my-searchbar&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在页面js文件中编写onSearch方法用于接收索框内容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">    onSearch: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"search:"</span>, e.detail.value)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/704059-df592828ef2241fa.gif?imageMogr2/auto-orient/strip" alt="搜索框"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/20/margin叠加和BFC/" rel="next" title="margin叠加和BFC">
+                <i class="fa fa-chevron-left"></i> margin叠加和BFC
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/21/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Eli Lai">
+            
+              <p class="site-author-name" itemprop="name">Eli Lai</p>
+              <p class="site-description motion-element" itemprop="description">Eli's World</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/elilai666" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:elilai@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-新建组件相关文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.新建组件相关文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-编写组件相关文件"><span class="nav-number">2.2.</span> <span class="nav-text">2.编写组件相关文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#index-wxml"><span class="nav-number">2.2.1.</span> <span class="nav-text">index.wxml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-js"><span class="nav-number">2.2.2.</span> <span class="nav-text">index.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#index-wxss"><span class="nav-number">2.2.3.</span> <span class="nav-text">index.wxss</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用组件"><span class="nav-number">2.3.</span> <span class="nav-text">3.使用组件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eli Lai</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
