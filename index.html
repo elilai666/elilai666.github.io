@@ -537,9 +537,8 @@
 <li>localstorage在所有同源窗口中都是共享的；也就是说只要浏览器不关闭，数据仍然存在</li>
 <li>cookie: 也是在所有同源窗口中都是共享的.也就是说只要浏览器不关闭，数据仍然存在</li>
 </ul>
-<p>作者：thomaszhou<br>链接：<a href="https://juejin.im/post/5ad5b9116fb9a028e014fb19" target="_blank" rel="noopener">https://juejin.im/post/5ad5b9116fb9a028e014fb19</a><br>来源：掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<h2 id="同源策略是？"><a href="#同源策略是？" class="headerlink" title="同源策略是？"></a>同源策略是？</h2><p><strong>同domain（或ip）,同端口，同协议</strong>视为同一个域，一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。<br><img src="https://pic1.zhimg.com/v2-5fa29773fc875bf58e4513fdba402bf0_b.png" alt="image"></p>
-<h2 id="如何跨域通信"><a href="#如何跨域通信" class="headerlink" title="如何跨域通信"></a>如何跨域通信</h2><p>两个不同源的脚本通信就是跨域，方法主要有以下几种：</p>
+<h2 id="同源策略是？"><a href="#同源策略是？" class="headerlink" title="同源策略是？"></a>同源策略是？</h2><p><strong>同domain（或ip）,同端口，同协议</strong>视为同一个域，一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。<br><img src="https://s2.ax1x.com/2019/01/30/klUnh9.png" alt="image"></p>
+<h2 id="如何跨域通信"><a href="#如何跨域通信" class="headerlink" title="如何跨域通信"></a>如何跨域通信</h2><p>两个不同源的脚本通信就是跨域，方法主要有以下几种</p>
 <h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP全称为：JSON with Padding，可用于解决主流浏览器的跨域数据访问的问题。</p>
 <p>Web 页面上调用 js 文件不受浏览器同源策略的影响，所以通过 Script 便签可以进行跨域的请求：</p>
 <ol>
