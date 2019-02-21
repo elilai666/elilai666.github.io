@@ -137,7 +137,7 @@
 <meta property="og:site_name" content="Eli&#39;s Blog">
 <meta property="og:description" content="特点小程序的部分接口需要经过用户授权同意才能调用。这些接口别分成多个 scope ，用户选择对 scope 来进行授权，当授权给一个 scope 之后，其对应的所有接口都可以直接使用。此类接口调用有以下特点：  如果用户未接受或拒绝过此权限（比如在授权弹窗时退出），会弹窗询问用户，用户点击同意后方可调用接口； 如果用户已授权，可以直接调用接口； 如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-21T01:33:01.841Z">
+<meta property="og:updated_time" content="2019-02-21T01:34:41.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序授权">
 <meta name="twitter:description" content="特点小程序的部分接口需要经过用户授权同意才能调用。这些接口别分成多个 scope ，用户选择对 scope 来进行授权，当授权给一个 scope 之后，其对应的所有接口都可以直接使用。此类接口调用有以下特点：  如果用户未接受或拒绝过此权限（比如在授权弹窗时退出），会弹窗询问用户，用户点击同意后方可调用接口； 如果用户已授权，可以直接调用接口； 如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口">
@@ -434,8 +434,64 @@
 <ul>
 <li>如果用户<strong>未接受或拒绝过此权限</strong>（比如在授权弹窗时退出），会弹窗询问用户，用户点击同意后方可调用接口；</li>
 <li>如果用户已授权，可以直接调用接口；</li>
-<li>如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。<h2 id="scope-列表"><a href="#scope-列表" class="headerlink" title="scope 列表"></a>scope 列表</h2>scope | 对应接口 | 描述<br>—|—|—<br>scope.userInfo | wx.getUserInfo | 用户信息<br>scope.userLocation |    wx.getLocation, wx.chooseLocation    | 地理位置<br>scope.address |    wx.chooseAddress | 通讯地址<br>scope.invoiceTitle |    wx.chooseInvoiceTitle |    发票抬头<br>scope.invoice |    wx.chooseInvoice    | 获取发票<br>scope.werun |    wx.getWeRunData |    微信运动步数<br>scope.record |    wx.startRecord |    录音功能<br>scope.writePhotosAlbum |    wx.saveImageToPhotosAlbum, wx.saveVideoToPhotosAlbum |    保存到相册<br>scope.camera |    <camera>  组件    | 摄像头</camera></li>
+<li>如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。</li>
 </ul>
+<h2 id="scope-列表"><a href="#scope-列表" class="headerlink" title="scope 列表"></a>scope 列表</h2><table>
+<thead>
+<tr>
+<th>scope</th>
+<th>对应接口</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scope.userInfo</td>
+<td>wx.getUserInfo</td>
+<td>用户信息</td>
+</tr>
+<tr>
+<td>scope.userLocation</td>
+<td>wx.getLocation, wx.chooseLocation</td>
+<td>地理位置</td>
+</tr>
+<tr>
+<td>scope.address</td>
+<td>wx.chooseAddress</td>
+<td>通讯地址</td>
+</tr>
+<tr>
+<td>scope.invoiceTitle</td>
+<td>wx.chooseInvoiceTitle</td>
+<td>发票抬头</td>
+</tr>
+<tr>
+<td>scope.invoice</td>
+<td>wx.chooseInvoice</td>
+<td>获取发票</td>
+</tr>
+<tr>
+<td>scope.werun</td>
+<td>wx.getWeRunData</td>
+<td>微信运动步数</td>
+</tr>
+<tr>
+<td>scope.record</td>
+<td>wx.startRecord</td>
+<td>录音功能</td>
+</tr>
+<tr>
+<td>scope.writePhotosAlbum</td>
+<td>wx.saveImageToPhotosAlbum, wx.saveVideoToPhotosAlbum</td>
+<td>保存到相册</td>
+</tr>
+<tr>
+<td>scope.camera</td>
+<td><camera>  组件</camera></td>
+<td>摄像头</td>
+</tr>
+</tbody>
+</table>
 <h2 id="授权涉及到的接口"><a href="#授权涉及到的接口" class="headerlink" title="授权涉及到的接口"></a>授权涉及到的接口</h2><ul>
 <li><code>wx.openSetting</code> 打开权限控制页面，只能通过点击事件调用</li>
 <li><code>wx.getSetting</code> 获取用户的当前授权状态</li>
@@ -582,7 +638,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -593,7 +649,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

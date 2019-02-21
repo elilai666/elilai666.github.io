@@ -438,8 +438,64 @@
 <ul>
 <li>如果用户<strong>未接受或拒绝过此权限</strong>（比如在授权弹窗时退出），会弹窗询问用户，用户点击同意后方可调用接口；</li>
 <li>如果用户已授权，可以直接调用接口；</li>
-<li>如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。<h2 id="scope-列表"><a href="#scope-列表" class="headerlink" title="scope 列表"></a>scope 列表</h2>scope | 对应接口 | 描述<br>—|—|—<br>scope.userInfo | wx.getUserInfo | 用户信息<br>scope.userLocation |    wx.getLocation, wx.chooseLocation    | 地理位置<br>scope.address |    wx.chooseAddress | 通讯地址<br>scope.invoiceTitle |    wx.chooseInvoiceTitle |    发票抬头<br>scope.invoice |    wx.chooseInvoice    | 获取发票<br>scope.werun |    wx.getWeRunData |    微信运动步数<br>scope.record |    wx.startRecord |    录音功能<br>scope.writePhotosAlbum |    wx.saveImageToPhotosAlbum, wx.saveVideoToPhotosAlbum |    保存到相册<br>scope.camera |    <camera>  组件    | 摄像头</camera></li>
+<li>如果用户已拒绝授权，则不会出现弹窗，而是直接进入接口 fail 回调。</li>
 </ul>
+<h2 id="scope-列表"><a href="#scope-列表" class="headerlink" title="scope 列表"></a>scope 列表</h2><table>
+<thead>
+<tr>
+<th>scope</th>
+<th>对应接口</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scope.userInfo</td>
+<td>wx.getUserInfo</td>
+<td>用户信息</td>
+</tr>
+<tr>
+<td>scope.userLocation</td>
+<td>wx.getLocation, wx.chooseLocation</td>
+<td>地理位置</td>
+</tr>
+<tr>
+<td>scope.address</td>
+<td>wx.chooseAddress</td>
+<td>通讯地址</td>
+</tr>
+<tr>
+<td>scope.invoiceTitle</td>
+<td>wx.chooseInvoiceTitle</td>
+<td>发票抬头</td>
+</tr>
+<tr>
+<td>scope.invoice</td>
+<td>wx.chooseInvoice</td>
+<td>获取发票</td>
+</tr>
+<tr>
+<td>scope.werun</td>
+<td>wx.getWeRunData</td>
+<td>微信运动步数</td>
+</tr>
+<tr>
+<td>scope.record</td>
+<td>wx.startRecord</td>
+<td>录音功能</td>
+</tr>
+<tr>
+<td>scope.writePhotosAlbum</td>
+<td>wx.saveImageToPhotosAlbum, wx.saveVideoToPhotosAlbum</td>
+<td>保存到相册</td>
+</tr>
+<tr>
+<td>scope.camera</td>
+<td><camera>  组件</camera></td>
+<td>摄像头</td>
+</tr>
+</tbody>
+</table>
 <h2 id="授权涉及到的接口"><a href="#授权涉及到的接口" class="headerlink" title="授权涉及到的接口"></a>授权涉及到的接口</h2><ul>
 <li><code>wx.openSetting</code> 打开权限控制页面，只能通过点击事件调用</li>
 <li><code>wx.getSetting</code> 获取用户的当前授权状态</li>
@@ -560,30 +616,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/html/" itemprop="url" rel="index">
-                    <span itemprop="name">html</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/html/css/" itemprop="url" rel="index">
-                    <span itemprop="name">css</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/html/css/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
                   </a>
                 </span>
 
@@ -652,7 +686,8 @@
 <li>400 Bad Request:</li>
 <li>401 Unauthorized:</li>
 <li>402 Payment Required:</li>
-<li><strong>403 Forbidden:</strong><br>-<strong> 404 Not Found:</strong></li>
+<li><strong>403 Forbidden:</strong></li>
+<li><strong>404 Not Found:</strong></li>
 <li>405 Method Not Allowed:</li>
 <li>406 Not Acceptable:</li>
 <li>407 Proxy Authentication Required:</li>
@@ -702,8 +737,8 @@
 <li>localstorage在所有同源窗口中都是共享的；也就是说只要浏览器不关闭，数据仍然存在</li>
 <li>cookie: 也是在所有同源窗口中都是共享的.也就是说只要浏览器不关闭，数据仍然存在</li>
 </ul>
-<h2 id="同源策略是？"><a href="#同源策略是？" class="headerlink" title="同源策略是？"></a>同源策略是？</h2><p><strong>同domain（或ip）,同端口，同协议</strong>视为同一个域，一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。<br><img src="https://s2.ax1x.com/2019/01/30/klUnh9.png" alt="image"></p>
-<h2 id="如何跨域通信"><a href="#如何跨域通信" class="headerlink" title="如何跨域通信"></a>如何跨域通信</h2><p>两个不同源的脚本通信就是跨域，方法主要有以下几种</p>
+<h2 id="同源策略是？"><a href="#同源策略是？" class="headerlink" title="同源策略是？"></a>同源策略是？</h2><p><strong>同domain（或ip）,同端口，同协议</strong>视为同一个域，一个域内的脚本仅仅具有本域内的权限，可以理解为本域脚本只能读写本域内的资源，而无法访问其它域的资源。这种安全限制称为同源策略。<br><img src="https://s2.ax1x.com/2019/02/21/kR1pv9.png" alt="image"></p>
+<h2 id="如何跨域通信"><a href="#如何跨域通信" class="headerlink" title="如何跨域通信"></a>如何跨域通信</h2><p>两个不同源的脚本通信就是跨域，方法主要有以下几种：</p>
 <h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP全称为：JSON with Padding，可用于解决主流浏览器的跨域数据访问的问题。</p>
 <p>Web 页面上调用 js 文件不受浏览器同源策略的影响，所以通过 Script 便签可以进行跨域的请求：</p>
 <ol>
@@ -766,13 +801,6 @@
 <li>空行：协议中规定请求头和请求主体间必须用一个空行隔开</li>
 <li>请求主体：对于post请求，所需要的参数都不会放在url中，这时候就需要一个载体了，这个载体就是请求主题。</li>
 </ul>
-<h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h2 id="html语义化？"><a href="#html语义化？" class="headerlink" title="html语义化？"></a>html语义化？</h2><p>HTML标签的语义化是指：通过使用包含语义的标签（如h1-h6）恰当地表示文档结构。</p>
-<ul>
-<li>去掉样式后页面呈现清晰的结构</li>
-<li>盲人使用读屏器更好地阅读</li>
-<li>搜索引擎更好地理解页面，有利于收录</li>
-<li>便团队项目的可持续运作及维护</li>
-</ul>
 <h3 id="服务器处理请求并返回HTTP报文"><a href="#服务器处理请求并返回HTTP报文" class="headerlink" title="服务器处理请求并返回HTTP报文"></a>服务器处理请求并返回HTTP报文</h3><p>服务端收到请求之后，会根据url匹配到的路径做相应的处理，最后返回浏览器需要的页面资源。浏览器会收到一个响应报文，而所需要的资源就就在报文主体上。与请求报文相同，响应报文也有与之对应的起始行、首部、空行、报文主体，不同的地方在于包含的东西不一样。</p>
 <ul>
 <li>响应行：响应报文的起始行同样包含了协议版本，与请求的起始行不同的是其包含的还有状态码和状态码的原因短语。</li>
@@ -795,11 +823,36 @@
 <li>服务端处理完任务后，向客户端发送一个 FIN包，seq = y; 同时将自己的状态置为LAST_ACK</li>
 <li>客户端收到包后状态切换为TIME_WAIT，并向服务端发送ACK包，ack = y + 1，等待2MSL后关闭连接。</li>
 </ul>
+<h2 id="OSI-七层网络模型"><a href="#OSI-七层网络模型" class="headerlink" title="OSI 七层网络模型"></a>OSI 七层网络模型</h2><p><img src="https://s2.ax1x.com/2019/02/21/kR1E4O.png" alt="image"></p>
 <h2 id="http缓存"><a href="#http缓存" class="headerlink" title="http缓存"></a>http缓存</h2><p>请求是浏览器的一个优化点，我们可以通过缓存来减少不必要的请求，进而加快页面的呈现。通过简单地设置http头部可以使用缓存的功能。一般来说有三种设置的方式</p>
 <h3 id="Last-Modify-响应头-If-Modified-Since（请求头）"><a href="#Last-Modify-响应头-If-Modified-Since（请求头）" class="headerlink" title="Last-Modify(响应头) + If-Modified-Since（请求头）"></a>Last-Modify(响应头) + If-Modified-Since（请求头）</h3><p>服务器在返回资源的时候设置Last-Modify当前资源最后一次修改的时间，浏览器会把这个时间保存下来，在下次请求的时候，请求头部If-Modified-Since 会包含这个时间，服务端收到请求后，会比对资源最后更新的时间是否在If-Modified-Since设置的时间之后，如果不是，返回304状态码，浏览器将从缓存中获取资源。反之返回200和资源内容。</p>
 <h3 id="ETag（响应头）-If-None-Match（请求头）"><a href="#ETag（响应头）-If-None-Match（请求头）" class="headerlink" title="ETag（响应头） + If-None-Match（请求头）"></a>ETag（响应头） + If-None-Match（请求头）</h3><p>根据资源标识符来确定文件是否存在修改，服务器每一次返回资源，都会在Etag中存放资源的标识符，浏览器收到这个标识符，在下一次请求的时候将标识符放在If-None-Match中，服务端将判断是否匹配，如果不匹配，返回200以及新的资源，反之返回304，浏览器从缓存中获取资源</p>
 <h3 id="Cache-Control-Expires-响应头"><a href="#Cache-Control-Expires-响应头" class="headerlink" title="Cache-Control/Expires(响应头)"></a>Cache-Control/Expires(响应头)</h3><p>首先这不是一种方法，而是协议更替中的一种演化。<br>在http 1.0的时代，我们基于Pragma 和 Expires 控制缓存的生命周期。我们可以通过设置Pragma为no-cache关闭缓存功能，同样也可以在Expires中设置一个缓存失效的时间。需要注意的是，这个失效的时间是相对于服务器的实践而言的，如果人为地改变了客户端的时间，是会导致缓存失效的。</p>
 <p>所以，为了解决这个问题，HTTP1.1的协议加入了Cache-Control，通过设置Cache-Control的max-age可以控制缓存的周期。在这个周期内，资源是新鲜的，浏览器再一次需要使用资源的时候，就不会发出请求了</p>
+<h2 id="TCP-为什么是三次握手，而不是两次或四次？"><a href="#TCP-为什么是三次握手，而不是两次或四次？" class="headerlink" title="TCP 为什么是三次握手，而不是两次或四次？"></a>TCP 为什么是三次握手，而不是两次或四次？</h2><blockquote>
+<p>核心思想：既要保证数据可靠传输，又要提高传输的效率，而用三次恰恰可以满足以上两方面的需求！</p>
+</blockquote>
+<p><strong>四次握手</strong>的过程：</p>
+<ol>
+<li>A 发送同步信号SYN + A’s Initial sequence number </li>
+<li>B 确认收到A的同步信号，并记录 A’s ISN 到本地，命名 B’s ACK sequence number</li>
+<li>B发送同步信号SYN + B’s Initial sequence number </li>
+<li>A确认收到B的同步信号，并记录 B’s ISN 到本地，命名 A’s ACK sequence number</li>
+</ol>
+<p>很显然2和3这两个步骤可以合并，只需要三次握手，可以提高连接的速度与效率。</p>
+<p><strong>二次握手</strong>的过程：</p>
+<ol>
+<li>A 发送同步信号SYN + A’s Initial sequence number </li>
+<li>B发送同步信号SYN + B’s Initial sequence number + B’s ACK sequence number</li>
+</ol>
+<p>这里有一个问题，A与B就A的初始序列号达成了一致，这里是1000。但是B无法知道A是否已经接收到自己的同步信号，如果这个同步信号丢失了，A和B就B的初始序列号将无法达成一致。</p>
+<h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h2 id="html语义化？"><a href="#html语义化？" class="headerlink" title="html语义化？"></a>html语义化？</h2><p>HTML标签的语义化是指：通过使用包含语义的标签（如h1-h6）恰当地表示文档结构。</p>
+<ul>
+<li>去掉样式后页面呈现清晰的结构</li>
+<li>盲人使用读屏器更好地阅读</li>
+<li>搜索引擎更好地理解页面，有利于收录</li>
+<li>便团队项目的可持续运作及维护</li>
+</ul>
 <h2 id="viewport的常见设置有哪些"><a href="#viewport的常见设置有哪些" class="headerlink" title="viewport的常见设置有哪些"></a>viewport的常见设置有哪些</h2><p>viewport常常使用在响应式开发以及移动web开发中，viewport顾名思义就是用来设置视口，主要是规定视口的宽度、视口的初始缩放值、 视口的最小缩放值、视口的最大缩放值、是否允许用户缩放等。一个常见的viewport设置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot;  content=&quot;initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li>initial-scale：初始缩放比例</li>
@@ -883,14 +936,17 @@
 </ul>
 <h2 id="重绘（repaint）和回流（reflow）是什么，如何避免？"><a href="#重绘（repaint）和回流（reflow）是什么，如何避免？" class="headerlink" title="重绘（repaint）和回流（reflow）是什么，如何避免？"></a>重绘（repaint）和回流（reflow）是什么，如何避免？</h2><p>DOM的变化影响到了元素的几何属性（宽高）,浏览器重新计算元素的几何属性，其他元素的几何 属性和位置也会受到影响，浏览器需要重新构造渲染树，这个过程称为重排，浏览器将受到影响的部分 重新绘制到屏幕上的过程称为重绘。引起重排的原因有</p>
 <ol>
-<li>添加或者删除可见的DOM元素</li>
-<li>元素位置、 尺寸、内容改变，</li>
-<li>浏览器页面初始化</li>
-<li>浏览器窗口尺寸改变，重排一定重绘，重绘不一定重排</li>
+<li>调整窗口大小</li>
+<li>字体大小</li>
+<li>样式表变动</li>
+<li>元素内容变化，尤其是输入控件</li>
+<li>CSS伪类激活，在用户交互过程中发生</li>
+<li>DOM操作，DOM元素增删、修改</li>
+<li>width, clientWidth, scrollTop等布局宽高的计算</li>
 </ol>
 <p>减少重绘和重排的方法：</p>
 <ol>
-<li>不在布局信息改变时做DOM查询</li>
+<li>避免频繁读取元素几何属性</li>
 <li>使用cssText或者className一次性改变属性 </li>
 <li>使用fragment</li>
 <li>对于多次重排的元素，如动画，使用绝对定位脱离文档流，让他的改变不影响到其他元素</li>
@@ -942,13 +998,18 @@
 </li>
 </ol>
 <h2 id="JS-原型是什么？"><a href="#JS-原型是什么？" class="headerlink" title="JS 原型是什么？"></a>JS 原型是什么？</h2><p>每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
-<h3 id="protytype"><a href="#protytype" class="headerlink" title="protytype"></a>protytype</h3><p>每个函数都有一个 prototype 属性，指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型对象</p>
-<h3 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h3><p>每一个JavaScript对象(除了 null)都具有的一个属性，叫<code>__proto__</code>，这个属性会指向该对象的原型。</p>
-<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>每个原型都有一个 constructor 属性指向关联的构造函数。</p>
-<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>图中由相互关联的原型组成的链状结构就是原型链，也就是蓝色的这条线。<br><img src="https://github.com/mqyqingfeng/Blog/raw/master/Images/prototype5.png" alt="prototype"></p>
+<h3 id="protytype"><a href="#protytype" class="headerlink" title="protytype"></a>protytype</h3><p>每个函数都有一个 <code>prototype</code> 属性，指向了一个对象，这个对象正是调用该构造函数而创建的实例的原型对象</p>
+<h3 id="proto"><a href="#proto" class="headerlink" title="proto"></a><strong>proto</strong></h3><p>每一个JavaScript对象(除了 null)都具有的一个属性，叫<code>__proto__</code>，这个属性会指向该对象的原型。</p>
+<h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>每个原型都有一个 <code>constructor</code> 属性指向关联的构造函数。</p>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>图中由相互关联的原型组成的链状结构就是原型链，也就是蓝色的这条线。<br><img src="https://s2.ax1x.com/2019/02/21/kR1Y8g.png" alt="prototype"></p>
 <h2 id="JS-如何实现继承？"><a href="#JS-如何实现继承？" class="headerlink" title="JS 如何实现继承？"></a>JS 如何实现继承？</h2><p><a href="https://github.com/mqyqingfeng/Blog/issues/16" target="_blank" rel="noopener">JavaScript深入之继承的多种方式和优缺点</a></p>
 <h3 id="原型链-1"><a href="#原型链-1" class="headerlink" title="原型链"></a>原型链</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    Parent.call(<span class="keyword">this</span>)<span class="comment">//继承属性</span></span><br><span class="line">&#125;</span><br><span class="line">Child.prototype = <span class="built_in">Object</span>.create(Parent.prototype);<span class="comment">//继承方法</span></span><br><span class="line">Child.prototype.constructor = Child</span><br></pre></td></tr></table></figure>
 <h3 id="ES6-class"><a href="#ES6-class" class="headerlink" title="ES6 class"></a>ES6 class</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y, props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(x, y); <span class="comment">// 调用父类的constructor(x, y)</span></span><br><span class="line">    <span class="keyword">this</span>.props = props;</span><br><span class="line">  &#125;</span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> xxx; <span class="comment">// 调用父类的toString()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="new-做了几件事？"><a href="#new-做了几件事？" class="headerlink" title="new 做了几件事？"></a>new 做了几件事？</h2><ol>
+<li>以构造器的 prototype 属性（注意与私有字段 [[prototype]] 的区分）为原型，创建新对象；</li>
+<li>将 this 和调用参数传给构造器，执行；</li>
+<li>如果构造器返回的是对象，则返回，否则返回第一步创建的对象。</li>
+</ol>
 <h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>MDN 对闭包的定义为：</p>
 <blockquote>
 <p>闭包是指那些能够访问自由变量的函数。</p>
@@ -989,7 +1050,7 @@
 <li>将整个函数包裹在一对括号中(只有在你不将函数赋值给一个变量的时候才需要)</li>
 </ul>
 <h3 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h3><p>这种模式是非常有用的，因为它为你初始化代码提供了一个作用域的沙箱；<br>考虑一下下面这种常见的场景：<br>你的代码在页面代码加载完成之后，不得不执行一些设置工作，比如附加时间处理器，创建对象等等，<br>所有的这些工作只需要执行一次，所以没有理由创建一个可复用的命名的函数，<br>但这些代码也需要一些临时的变量，但初始化过程结束后，就再也不会被用到了，<br>所以将这些变量作为全局变量不是个好主意，所以我们需要立即执行函数——去将我们所有的代码包裹在它的局部作用域中，不会让任何变量泄露成全局变量；</p>
-<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cloneObj = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str, newobj = obj.constructor === <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !== <span class="string">'object'</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.JSON)&#123;</span><br><span class="line">        str = <span class="built_in">JSON</span>.stringify(obj), <span class="comment">//系列化对象</span></span><br><span class="line">        newobj = <span class="built_in">JSON</span>.parse(str); <span class="comment">//还原</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> obj)&#123;</span><br><span class="line">            newobj[i] = <span class="keyword">typeof</span> obj[i] === <span class="string">'object'</span> ? cloneObj(obj[i]) : obj[i]; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newobj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cloneObj = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str, newobj = obj.constructor === <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !== <span class="string">'object'</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.JSON)&#123;</span><br><span class="line">        str = <span class="built_in">JSON</span>.stringify(obj), <span class="comment">//系列化对象</span></span><br><span class="line">        newobj = <span class="built_in">JSON</span>.parse(str); <span class="comment">//还原</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> obj)&#123;</span><br><span class="line">            newobj[i] = <span class="keyword">typeof</span> obj[i] === <span class="string">'object'</span> ? cloneObj(obj[i]) : obj[i]; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> newobj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><ul>
 <li><p>用indexOf</p>
   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">1</span>, <span class="string">'1'</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> res = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = array.length; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> current = array[i];</span><br><span class="line">        <span class="keyword">if</span> (res.indexOf(current) === <span class="number">-1</span>) &#123;</span><br><span class="line">            res.push(current)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(unique(array));</span><br></pre></td></tr></table></figure>
@@ -1019,7 +1080,7 @@
 <h3 id="防抖函数"><a href="#防抖函数" class="headerlink" title="防抖函数"></a>防抖函数</h3><p><a href="https://github.com/mqyqingfeng/Blog/issues/22" target="_blank" rel="noopener">JavaScript专题之跟着underscore学防抖</a></p>
 <p>防抖的原理就是：你尽管触发事件，但是我一定在事件触发 n 秒后才执行，如果你在一个事件触发的 n 秒内又触发了这个事件，那我就以新的事件的时间为准，n 秒后才执行，总之，就是要等你触发完事件 n 秒内不再触发事件，我才执行，真是任性呐!<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> timeout, result;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">        <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">            <span class="comment">// 如果已经执行过，不再执行</span></span><br><span class="line">            <span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">            timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                timeout = <span class="literal">null</span>;</span><br><span class="line">            &#125;, wait)</span><br><span class="line">            <span class="keyword">if</span> (callNow) result = func.apply(context, args)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                func.apply(context, args)</span><br><span class="line">            &#125;, wait);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="节流函数"><a href="#节流函数" class="headerlink" title="节流函数"></a>节流函数</h3><p>如果你持续触发事件，每隔一段时间，只执行一次事件。<br>根据首次是否执行以及结束后是否执行，效果有所不同，实现的方式也有所不同。</p>
-<h4 id="使用时间戳"><a href="#使用时间戳" class="headerlink" title="使用时间戳"></a>使用时间戳</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context, args;</span><br><span class="line">    <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">        context = <span class="keyword">this</span>;</span><br><span class="line">        args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span> (now - previous &gt; wait) &#123;</span><br><span class="line">            func.apply(context, args);</span><br><span class="line">            previous = now;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用时间戳"><a href="#使用时间戳" class="headerlink" title="使用时间戳"></a>使用时间戳</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context;</span><br><span class="line">    <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">        context = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">if</span> (now - previous &gt; wait) &#123;</span><br><span class="line">            func.apply(context, <span class="built_in">arguments</span>);</span><br><span class="line">            previous = now;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="使用定时器"><a href="#使用定时器" class="headerlink" title="使用定时器"></a>使用定时器</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二版</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timeout;</span><br><span class="line">    <span class="keyword">var</span> previous = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        context = <span class="keyword">this</span>;</span><br><span class="line">        args = <span class="built_in">arguments</span>;</span><br><span class="line">        <span class="keyword">if</span> (!timeout) &#123;</span><br><span class="line">            timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                timeout = <span class="literal">null</span>;</span><br><span class="line">                func.apply(context, args)</span><br><span class="line">            &#125;, wait)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><h2 id="DOM-事件模型是什么"><a href="#DOM-事件模型是什么" class="headerlink" title="DOM 事件模型是什么"></a>DOM 事件模型是什么</h2><p>DOM事件模型分为捕获和冒泡。一个事件发生后，会在子元素和父元素之间传播（propagation）。这种传播分成三个阶段。</p>
 <ol>
@@ -1835,7 +1896,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1846,7 +1907,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
